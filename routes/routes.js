@@ -17,7 +17,6 @@ router.get("/food", Controller.food); // Product with categories food
 router.get("/food/add", Controller.addFood); // Product with categories food
 router.post("/food/add", Controller.addFoodPost); // form add product with categories food
 
-
 // BEVERAGES
 router.get("/beverage", Controller.beverage); // add product with categories beverage
 router.get("/beverage/add", Controller.addBeverage); //form add product with categories beverage
