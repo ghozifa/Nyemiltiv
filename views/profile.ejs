@@ -1,12 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nyemiltiv - Profile</title>
 </head>
+
 <body>
-    
+    <%- include("../partials/navbar") %>
+        <% if (result=="Kosong" ) { %>
+            <% } else { %>
+                <div style="text-align:center">
+                    <h1>Profile</h1>
+                    <p>
+                        First Name : <%= result.firstName %>
+                    </p>
+                    <p>
+                        Last Name : <%= result.lastName %>
+                    </p>
+                    <p>
+                        Email : <%= result.User.email %>
+                    </p>
+                    <p>
+                        Address : <%= result.address %>
+                    </p>
+                    <p>
+                        Phone Number : <%= result.phoneNumber %>
+                    </p>
+                    <p>
+                        Gender : <%= result.gender %>
+                    </p>
+                </div>
+                <% } %>
+                    <div style="text-align:center">
+                        <br>
+                        <% if (result=="Kosong" ) { %>
+                            <h2>Create Profile</h2>
+                            <form action="/profiles/add" method="post">
+                                <p>
+                                    <label for="firstName">First Name</label>
+                                    <br>
+                                    <input style="width: 300px;" id="firstName" type="text" name="firstName"
+                                        placeholder="Input first name here...">
+                                </p>
+                                <p>
+                                    <label for="lastName">Last Name</label>
+                                    <br>
+                                    <input style="width: 300px;" id="lastName" type="text" name="lastName"
+                                        placeholder="Input store last name here...">
+                                </p>
+                                <p>
+                                    <label for="address">Address</label>
+                                    <br>
+                                    <input style="width: 300px;" id="address" type="text" name="address"
+                                        placeholder="Input adress here...">
+                                </p>
+                                <p>
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <br>
+                                    <input style="width: 300px;" id="phoneNumber" type="number" name="phoneNumber"
+                                        placeholder="Input phone number here...">
+                                </p>
+                                <p>
+                                    <label for="gender">Gender</label>
+                                    <br>
+                                    <select style="width: 300px;" id="gender" name="gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Undefined">Undefined</option>
+                                    </select>
+                                </p>
+                                <button type="submit">Add Profile</button>
+                            </form>
+                            <% } else { %>
+                                <h2>Edit Profile</h2>
+                                <form action="/profiles/<%= result.User.id %>/edit" method="post">
+                                    <p>
+                                        <label for="firstName">First Name</label>
+                                        <br>
+                                        <input style="width: 300px;" id="firstName" type="text" name="firstName"
+                                            placeholder="Input first name here..." value="<%= result.firstName %>">
+                                    </p>
+                                    <p>
+                                        <label for="lastName">Last Name</label>
+                                        <br>
+                                        <input style="width: 300px;" id="lastName" type="text" name="lastName"
+                                            placeholder="Input store last name here..." value="<%= result.lastName %>">
+                                    </p>
+                                    <p>
+                                        <label for="address">Address</label>
+                                        <br>
+                                        <input style="width: 300px;" id="address" type="text" name="address"
+                                            placeholder="Input adress here..." value="<%= result.address %>">
+                                    </p>
+                                    <p>
+                                        <label for="phoneNumber">Phone Number</label>
+                                        <br>
+                                        <input style="width: 300px;" id="phoneNumber" type="number" name="phoneNumber"
+                                            placeholder="Input phone number here..." value="<%= result.phoneNumber %>">
+                                    </p>
+                                    <p>
+                                        <label for="gender">gender</label>
+                                        <br>
+                                        <select style="width: 300px;" id="gender" name="gender">
+                                            <% if (result.gender=='Male' ) { %>
+                                                <option value="Male" selected>Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Undefined">Undefined</option>
+
+                                                <% } else if(result.gender=='Female' ) { %>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female" selected>Female</option>
+                                                    <option value="Undefined">Undefined</option>
+
+                                                    <% } else if(result.gender=='Undefined' ) { %>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                        <option value="Undefined" selected>Undefined</option>
+
+                                                        <% } else { %>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Undefined">Undefined</option>
+                                                            <option value="S3" selected>S3</option>
+                                                            <% } %>
+                                        </select>
+                                    </p>
+                                    <button type="submit">Add Profile</button>
+                                </form>
+                                <% } %>
+                    </div>
 </body>
+
 </html>

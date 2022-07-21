@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Profile',
+    hooks: {
+      beforeCreate(profile, options) {
+        profile.UserId = profile.id
+      }
+    }
   });
   return Profile;
 };
