@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nyemiltiv - Profile</title>
 </head>
-
+<%- include("../partials/navbar") %>
 <body>
-    <%- include("../partials/navbar") %>
+        <% if(error) { %>
+            <p><%= error %></p>
+        <% } %>
         <% if (result == "Kosong" ) { %>
             <% } else { %>
                 <div style="text-align:center">
@@ -70,6 +72,7 @@
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Undefined">Undefined</option>
+                                        <option selected disabled hidden>-- choose gender --</option>
                                     </select>
                                 </p>
                                 <button type="submit">Add Profile</button>
@@ -120,18 +123,12 @@
                                                         <option value="Female">Female</option>
                                                         <option value="Undefined" selected>Undefined</option>
 
-                                                        <% } else { %>
-                                                            <option value="Male">Male</option>
-                                                            <option value="Female">Female</option>
-                                                            <option value="Undefined">Undefined</option>
-                                                            <option value="S3" selected>S3</option>
-                                                            <% } %>
+                                                        <% }  %>
                                         </select>
                                     </p>
                                     <button type="submit">Save</button>
                                 </form>
                                 <% } %>
                     </div>
-</body>
-
-</html>
+            </body>
+        </html>

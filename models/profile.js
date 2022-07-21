@@ -15,20 +15,73 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Profile.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    address: DataTypes.STRING,
-    phoneNumber: DataTypes.INTEGER,
-    gender: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
+    firstName: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: "Firstname cannot empty"
+        },
+        notNull: {
+          msg: "Firstname cannot empty"
+        }
+      }
+    },
+    lastName: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: "Lastname cannot empty"
+        },
+        notNull: {
+          msg: "Lastname cannot empty"
+        }
+      }
+    },
+    address: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: "Address cannot empty"
+        },
+        notNull: {
+          msg: "Address cannot empty"
+        }
+      }
+    },
+    phoneNumber: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          msg: "Phone number cannot empty"
+        },
+        notNull: {
+          msg: "Phone number cannot empty"
+        }
+      }
+    },
+    gender: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: "Please choose your gender"
+        },
+        notNull: {
+          msg: "Please choose your gender"
+        }
+      }
+    },
+    UserId: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    }
   }, {
     sequelize,
     modelName: 'Profile',
-    hooks: {
-      beforeCreate(profile, options) {
-        profile.UserId = profile.id
-      }
-    }
   });
   return Profile;
 };

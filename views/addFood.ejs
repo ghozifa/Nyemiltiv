@@ -13,6 +13,9 @@
         <div style="text-align:center">
             <br>
             <h2>Add Food</h2>
+            <% if(error) { %>
+                <p><%= error %></p>
+            <% } %>
             <form action="/food/add" method="post">
                 <p>
                     <label for="name">Name</label>
