@@ -16,62 +16,62 @@ module.exports = (sequelize, DataTypes) => {
   }
   Profile.init({
     firstName: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING,
       validate: {
-        notNull: {
-          msg: 'First name cant be null'
-        },
         notEmpty: {
-          msg: 'First name cant be empty'
+          msg: "Firstname cannot empty"
+        },
+        notNull: {
+          msg: "Firstname cannot empty"
         }
       }
     },
     lastName: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING,
       validate: {
-        notNull: {
-          msg: 'Last name cant be null'
-        },
         notEmpty: {
-          msg: 'Last name cant be empty'
+          msg: "Lastname cannot empty"
+        },
+        notNull: {
+          msg: "Lastname cannot empty"
         }
       }
     },
     address: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING,
       validate: {
-        notNull: {
-          msg: 'Address cant be null'
-        },
         notEmpty: {
-          msg: 'Address cant be empty'
+          msg: "Address cannot empty"
+        },
+        notNull: {
+          msg: "Address cannot empty"
         }
       }
     },
     phoneNumber: {
-      type: DataTypes.INTEGER,
       allowNull: false,
+      type: DataTypes.INTEGER,
       validate: {
-        notNull: {
-          msg: 'Phone number cant be null'
-        },
         notEmpty: {
-          msg: 'Phone number cant be empty'
+          msg: "Phone number cannot empty"
+        },
+        notNull: {
+          msg: "Phone number cannot empty"
         }
       }
     },
     gender: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING,
       validate: {
-        notNull: {
-          msg: 'Gender cant be null'
-        },
         notEmpty: {
-          msg: 'Gender cant be empty'
+          msg: "Please choose your gender"
+        },
+        notNull: {
+          msg: "Please choose your gender"
         }
       }
     },
@@ -90,11 +90,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Profile',
-    hooks: {
-      beforeCreate(profile, options) {
-        profile.UserId = profile.id
-      }
-    }
   });
   return Profile;
 };

@@ -7,9 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nyemiltiv - Profile</title>
 </head>
-
+<%- include("../partials/navbar") %>
 <body>
-    <%- include("../partials/navbar") %>
         <% if (result=="Kosong" ) { %>
             <% } else { %>
                 <div style="text-align:center">
@@ -42,37 +41,69 @@
                                 <p style="color:red">
                                     <%= errors %>
                                 </p>
-                                <% } %>
-                                    <form action="/profiles/add" method="post">
-                                        <p>
-                                            <label for="firstName">First Name</label>
-                                            <br>
-                                            <input style="width: 300px;" id="firstName" type="text" name="firstName"
-                                                placeholder="Input first name here...">
-                                        </p>
-                                        <p>
-                                            <label for="lastName">Last Name</label>
-                                            <br>
-                                            <input style="width: 300px;" id="lastName" type="text" name="lastName"
-                                                placeholder="Input store last name here...">
-                                        </p>
-                                        <p>
-                                            <label for="address">Address</label>
-                                            <br>
-                                            <input style="width: 300px;" id="address" type="text" name="address"
-                                                placeholder="Input adress here...">
-                                        </p>
-                                        <p>
-                                            <label for="phoneNumber">Phone Number</label>
-                                            <br>
-                                            <input style="width: 300px;" id="phoneNumber" type="number"
-                                                name="phoneNumber" placeholder="Input phone number here...">
-                                        </p>
-                                        <p>
-                                            <label for="gender">Gender</label>
-                                            <br>
-                                            <select style="width: 300px;" id="gender" name="gender">
-                                                <option value="Male">Male</option>
+                                <p>
+                                    <label for="lastName">Last Name</label>
+                                    <br>
+                                    <input style="width: 300px;" id="lastName" type="text" name="lastName"
+                                        placeholder="Input store last name here...">
+                                </p>
+                                <p>
+                                    <label for="address">Address</label>
+                                    <br>
+                                    <input style="width: 300px;" id="address" type="text" name="address"
+                                        placeholder="Input adress here...">
+                                </p>
+                                <p>
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <br>
+                                    <input style="width: 300px;" id="phoneNumber" type="number" name="phoneNumber"
+                                        placeholder="Input phone number here...">
+                                </p>
+                                <p>
+                                    <label for="gender">Gender</label>
+                                    <br>
+                                    <select style="width: 300px;" id="gender" name="gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Undefined">Undefined</option>
+                                        <option selected disabled hidden>-- choose gender --</option>
+                                    </select>
+                                </p>
+                                <button type="submit">Add Profile</button>
+                            </form>
+                            <% } else { %>
+                                <h2>Edit Profile</h2>
+                                <form action="/profiles/<%= result.User.id %>/edit" method="post">
+                                    <p>
+                                        <label for="firstName">First Name</label>
+                                        <br>
+                                        <input style="width: 300px;" id="firstName" type="text" name="firstName"
+                                            placeholder="Input first name here..." value="<%= result.firstName %>">
+                                    </p>
+                                    <p>
+                                        <label for="lastName">Last Name</label>
+                                        <br>
+                                        <input style="width: 300px;" id="lastName" type="text" name="lastName"
+                                            placeholder="Input store last name here..." value="<%= result.lastName %>">
+                                    </p>
+                                    <p>
+                                        <label for="address">Address</label>
+                                        <br>
+                                        <input style="width: 300px;" id="address" type="text" name="address"
+                                            placeholder="Input adress here..." value="<%= result.address %>">
+                                    </p>
+                                    <p>
+                                        <label for="phoneNumber">Phone Number</label>
+                                        <br>
+                                        <input style="width: 300px;" id="phoneNumber" type="number" name="phoneNumber"
+                                            placeholder="Input phone number here..." value="<%= result.phoneNumber %>">
+                                    </p>
+                                    <p>
+                                        <label for="gender">gender</label>
+                                        <br>
+                                        <select style="width: 300px;" id="gender" name="gender">
+                                            <% if (result.gender=='Male' ) { %>
+                                                <option value="Male" selected>Male</option>
                                                 <option value="Female">Female</option>
                                                 <option value="Undefined">Undefined</option>
                                             </select>
@@ -134,7 +165,7 @@
                                                                         <option value="Female">Female</option>
                                                                         <option value="Undefined" selected>Undefined
                                                                         </option>
-
+                                                                        
                                                                         <% } else { %>
                                                                             <option value="Male">Male</option>
                                                                             <option value="Female">Female</option>
@@ -147,6 +178,5 @@
                                                 </form>
                                                 <% } %>
                     </div>
-</body>
-
-</html>
+            </body>
+        </html>

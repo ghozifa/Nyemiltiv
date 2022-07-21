@@ -104,7 +104,7 @@ class Controller {
         const sessionId = req.session.userId;
         Category.findByPk(1)
             .then(result => {
-                res.render('addFood', { result, sessionId, errors })
+                res.render('addFood', { result, sessionId, errors }
             })
             .catch(err => {
                 res.send(err)
@@ -118,14 +118,16 @@ class Controller {
                 res.redirect("/food")
             })
             .catch(err => {
-                let errors = err
-                if (err.name == 'SequelizeValidationError') {
-                    errors = err.errors.map(x => x.message)
+                if (err.name == "SequelizeValidationError") {
+                let error = err.errors.map(el => {
+                    return el.message
+                }).join("; ");
+                res.redirect(`/food/add?error=${error}`)
                 }
-                res.redirect(`/food/add?err=${errors}`)
-            })
-    }
-
+                res.send(err);
+            });
+        }
+        
     static beverage(req, res) {
         const sessionId = req.session.userId;
         const role = req.session.role;
@@ -247,17 +249,17 @@ class Controller {
 
     static profileByUserId(req, res) {
         const sessionId = req.session.userId;
-        let errors = req.query.err
-        const idUser = +req.params.id
+        const error = req.query.error;
+        const idUser = +req.params.id;
         Profile.findByPk(idUser, {
             include: User
         })
             .then(result => {
                 if (!result) {
                     result = "Kosong"
-                    res.render('profile', { result, errors, sessionId })
+                    res.render('profile', { result, errors, sessionId, error })
                 } else {
-                    res.render('profile', { result, errors, sessionId })
+                    res.render('profile', { result, errors, sessionId, error })
                 }
             })
             .catch(err => {
@@ -272,12 +274,8 @@ class Controller {
                 res.redirect("/")
             })
             .catch(err => {
-                let errors = err
-                if (err.name == 'SequelizeValidationError') {
-                    errors = err.errors.map(x => x.message)
-                }
-                res.redirect(`/profiles/add?err=${errors}`)
-            })
+                res.send(err);                
+            });
     }
 
     static editProfile(req, res) {
@@ -292,12 +290,14 @@ class Controller {
                 res.redirect(`/profiles/${idProfile}`)
             })
             .catch(err => {
-                let errors = err
-                if (err.name == 'SequelizeValidationError') {
-                    errors = err.errors.map(x => x.message)
-                }
-                res.redirect(`/profiles/add?err=${errors}`)
-            })
+                if (err.name == "SequelizeValidationError") {
+                    let error = err.errors.map(el => {
+                        return el.message
+                    }).join("; ");
+                    res.redirect(`/profiles/add?error=${error}`)
+                    }
+                    res.send(err);
+            });
     }
 
     static buyProducts(req, res) {
