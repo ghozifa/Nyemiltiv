@@ -104,7 +104,7 @@ class Controller {
         let error = req.query.error;
         Category.findByPk(1)
             .then(result => {
-                res.render('addFood', { result, sessionId, errors })
+                res.render('addFood', { result, sessionId, error })
             })
             .catch(err => {
                 res.send(err)
@@ -307,6 +307,10 @@ class Controller {
     }
 
     static buyProducts(req, res) {
+        const sessionId = req.session.userId;
+        UserProduct.findAll({
+            
+        })
 
     }   
     
