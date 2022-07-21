@@ -25,6 +25,56 @@ class Controller {
             })
     }
 
+    static addFood(req, res) {
+        Category.findByPk(1)
+            .then(result => {
+                res.render('addFood', { result })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static addFoodPost(req, res) {
+        let { name, description, price, stock, expiredDate, imgUrl, CategoryId } = req.body
+        Product.create({ name, description, price, stock, expiredDate, imgUrl, CategoryId })
+            .then(result => {
+                res.redirect("/food")
+            })
+            .catch(err => {
+                let errors = err
+                if (err.name == 'SequelizeValidationError') {
+                    errors = err.errors.map(x => x.message)
+                }
+                res.redirect(`/food/add?err=${errors}`)
+            })
+    }
+
+    static addBeverage(req, res) {
+        Category.findByPk(2)
+            .then(result => {
+                res.render('addBeverage', { result })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static addBeveragePost(req, res) {
+        let { name, description, price, stock, expiredDate, imgUrl, CategoryId } = req.body
+        Product.create({ name, description, price, stock, expiredDate, imgUrl, CategoryId })
+            .then(result => {
+                res.redirect("/beverage")
+            })
+            .catch(err => {
+                let errors = err
+                if (err.name == 'SequelizeValidationError') {
+                    errors = err.errors.map(x => x.message)
+                }
+                res.redirect(`/food/add?err=${errors}`)
+            })
+    }
+
     static beverage(req, res) {
         Category.findByPk(2, {
             include: Product
@@ -44,6 +94,67 @@ class Controller {
         })
             .then(result => {
                 res.render('productsDetailById', { result, dateFormatter, idrFormatter })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static editProduct(req, res) {
+        const idProduct = +req.params.id
+        Product.findByPk(idProduct)
+            .then(result => {
+                res.render('editProduct', { result, dateFormatter })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static editProductPost(req, res) {
+        const idProduct = +req.params.id
+        let { name, description, price, stock, expiredDate, imgUrl, CategoryId } = req.body
+        Product.update({ name, description, price, stock, expiredDate, imgUrl, CategoryId }, {
+            where: {
+                id: idProduct
+            }
+        })
+            .then(result => {
+                res.redirect(`/products/${idProduct}`)
+            })
+            .catch(err => {
+                let errors = err
+                if (err.name == 'SequelizeValidationError') {
+                    errors = err.errors.map(x => x.message)
+                }
+                res.redirect(`/products/${idProduct}/edit?err=${errors}`)
+            })
+    }
+
+    static deleteFood(req, res) {
+        const idProduct = +req.params.id
+        Product.destroy({
+            where: {
+                id: idProduct
+            }
+        })
+            .then(result => {
+                res.redirect(`/food`)
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static deleteBeverage(req, res) {
+        const idProduct = +req.params.id
+        Product.destroy({
+            where: {
+                id: idProduct
+            }
+        })
+            .then(result => {
+                res.redirect(`/Beverage`)
             })
             .catch(err => {
                 res.send(err)
