@@ -14,7 +14,9 @@
         <div style="text-align:center">
             <h2><a href="/profiles/1">Profile</a></h2>
             <h1>Foods</h1>
+            <% if(role == "Admin") { %>
             <p><a href="/food/add"><button>Add Food</button></a></p>
+            <% } %>
         </div>    
         <% result.Products.forEach(x=> { %>
             <div class="card">

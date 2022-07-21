@@ -13,10 +13,10 @@
     <body>
         <div style="text-align:center">
             <% if(notif) { %>
-                <p style="font-weight: bold;">
-                    <%= notif %>
-                </p>
-                <% } %>
+                <p style="font-weight: bold;"><%= notif %></p>
+            <% } %>
+            <h2><a href="/profiles/<%= sessionId %>">Profile</a></h2>
+            <h1>All Products</h1>
         </div>
         <% result.forEach(x=> { %>
         <div class="card">
