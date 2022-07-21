@@ -90,6 +90,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Profile',
+    hooks: {
+      beforeValidate(profile, options) {
+        profile.UserId = profile.id
+      }
+    }
   });
   return Profile;
 };

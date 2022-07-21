@@ -8,8 +8,12 @@
     <title>Nyemiltiv - Profile</title>
 </head>
 <%- include("../partials/navbar") %>
-<body>
+
+    <body>
         <% if (result=="Kosong" ) { %>
+            <div style="text-align:center">
+                <h1>You dont have a profile, click <a href="/profiles/add">here</a> to create</h1>
+            </div>
             <% } else { %>
                 <div style="text-align:center">
                     <h1>Profile</h1>
@@ -36,147 +40,72 @@
                     <div style="text-align:center">
                         <br>
                         <% if (result=="Kosong" ) { %>
-                            <h2>Create Profile</h2>
-                            <% if(errors) { %>
-                                <p style="color:red">
-                                    <%= errors %>
-                                </p>
-                                <p>
-                                    <label for="lastName">Last Name</label>
-                                    <br>
-                                    <input style="width: 300px;" id="lastName" type="text" name="lastName"
-                                        placeholder="Input store last name here...">
-                                </p>
-                                <p>
-                                    <label for="address">Address</label>
-                                    <br>
-                                    <input style="width: 300px;" id="address" type="text" name="address"
-                                        placeholder="Input adress here...">
-                                </p>
-                                <p>
-                                    <label for="phoneNumber">Phone Number</label>
-                                    <br>
-                                    <input style="width: 300px;" id="phoneNumber" type="number" name="phoneNumber"
-                                        placeholder="Input phone number here...">
-                                </p>
-                                <p>
-                                    <label for="gender">Gender</label>
-                                    <br>
-                                    <select style="width: 300px;" id="gender" name="gender">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Undefined">Undefined</option>
-                                        <option selected disabled hidden>-- choose gender --</option>
-                                    </select>
-                                </p>
-                                <button type="submit">Add Profile</button>
-                            </form>
                             <% } else { %>
                                 <h2>Edit Profile</h2>
-                                <form action="/profiles/<%= result.User.id %>/edit" method="post">
-                                    <p>
-                                        <label for="firstName">First Name</label>
-                                        <br>
-                                        <input style="width: 300px;" id="firstName" type="text" name="firstName"
-                                            placeholder="Input first name here..." value="<%= result.firstName %>">
+                                <% if(errors) { %>
+                                    <p style="color:red">
+                                        <%= errors %>
                                     </p>
-                                    <p>
-                                        <label for="lastName">Last Name</label>
-                                        <br>
-                                        <input style="width: 300px;" id="lastName" type="text" name="lastName"
-                                            placeholder="Input store last name here..." value="<%= result.lastName %>">
-                                    </p>
-                                    <p>
-                                        <label for="address">Address</label>
-                                        <br>
-                                        <input style="width: 300px;" id="address" type="text" name="address"
-                                            placeholder="Input adress here..." value="<%= result.address %>">
-                                    </p>
-                                    <p>
-                                        <label for="phoneNumber">Phone Number</label>
-                                        <br>
-                                        <input style="width: 300px;" id="phoneNumber" type="number" name="phoneNumber"
-                                            placeholder="Input phone number here..." value="<%= result.phoneNumber %>">
-                                    </p>
-                                    <p>
-                                        <label for="gender">gender</label>
-                                        <br>
-                                        <select style="width: 300px;" id="gender" name="gender">
-                                            <% if (result.gender=='Male' ) { %>
-                                                <option value="Male" selected>Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Undefined">Undefined</option>
-                                            </select>
-                                        </p>
-                                        <button type="submit">Add Profile</button>
-                                    </form>
-                                    <% } else { %>
-                                        <h2>Edit Profile</h2>
-                                        <% if(errors) { %>
-                                            <p style="color:red">
-                                                <%= errors %>
+                                    <% } %>
+                                        <form action="/profiles/<%= result.User.id %>/edit" method="post">
+                                            <p>
+                                                <label for="firstName">First Name</label>
+                                                <br>
+                                                <input style="width: 300px;" id="firstName" type="text" name="firstName"
+                                                    placeholder="Input first name here..."
+                                                    value="<%= result.firstName %>">
                                             </p>
-                                            <% } %>
-                                                <form action="/profiles/<%= result.User.id %>/edit" method="post">
-                                                    <p>
-                                                        <label for="firstName">First Name</label>
-                                                        <br>
-                                                        <input style="width: 300px;" id="firstName" type="text"
-                                                            name="firstName" placeholder="Input first name here..."
-                                                            value="<%= result.firstName %>">
-                                                    </p>
-                                                    <p>
-                                                        <label for="lastName">Last Name</label>
-                                                        <br>
-                                                        <input style="width: 300px;" id="lastName" type="text"
-                                                            name="lastName" placeholder="Input store last name here..."
-                                                            value="<%= result.lastName %>">
-                                                    </p>
-                                                    <p>
-                                                        <label for="address">Address</label>
-                                                        <br>
-                                                        <input style="width: 300px;" id="address" type="text"
-                                                            name="address" placeholder="Input adress here..."
-                                                            value="<%= result.address %>">
-                                                    </p>
-                                                    <p>
-                                                        <label for="phoneNumber">Phone Number</label>
-                                                        <br>
-                                                        <input style="width: 300px;" id="phoneNumber" type="number"
-                                                            name="phoneNumber" placeholder="Input phone number here..."
-                                                            value="<%= result.phoneNumber %>">
-                                                    </p>
-                                                    <p>
-                                                        <label for="gender">gender</label>
-                                                        <br>
-                                                        <select style="width: 300px;" id="gender" name="gender">
-                                                            <% if (result.gender=='Male' ) { %>
-                                                                <option value="Male" selected>Male</option>
+                                            <p>
+                                                <label for="lastName">Last Name</label>
+                                                <br>
+                                                <input style="width: 300px;" id="lastName" type="text" name="lastName"
+                                                    placeholder="Input store last name here..."
+                                                    value="<%= result.lastName %>">
+                                            </p>
+                                            <p>
+                                                <label for="address">Address</label>
+                                                <br>
+                                                <input style="width: 300px;" id="address" type="text" name="address"
+                                                    placeholder="Input adress here..." value="<%= result.address %>">
+                                            </p>
+                                            <p>
+                                                <label for="phoneNumber">Phone Number</label>
+                                                <br>
+                                                <input style="width: 300px;" id="phoneNumber" type="number"
+                                                    name="phoneNumber" placeholder="Input phone number here..."
+                                                    value="<%= result.phoneNumber %>">
+                                            </p>
+                                            <p>
+                                                <label for="gender">gender</label>
+                                                <br>
+                                                <select style="width: 300px;" id="gender" name="gender">
+                                                    <% if (result.gender=='Male' ) { %>
+                                                        <option value="Male" selected>Male</option>
+                                                        <option value="Female">Female</option>
+                                                        <option value="Undefined">Undefined</option>
+
+                                                        <% } else if(result.gender=='Female' ) { %>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female" selected>Female</option>
+                                                            <option value="Undefined">Undefined</option>
+
+                                                            <% } else if(result.gender=='Undefined' ) { %>
+                                                                <option value="Male">Male</option>
                                                                 <option value="Female">Female</option>
-                                                                <option value="Undefined">Undefined</option>
+                                                                <option value="Undefined" selected>Undefined
+                                                                </option>
 
-                                                                <% } else if(result.gender=='Female' ) { %>
+                                                                <% } else { %>
                                                                     <option value="Male">Male</option>
-                                                                    <option value="Female" selected>Female</option>
+                                                                    <option value="Female">Female</option>
                                                                     <option value="Undefined">Undefined</option>
-
-                                                                    <% } else if(result.gender=='Undefined' ) { %>
-                                                                        <option value="Male">Male</option>
-                                                                        <option value="Female">Female</option>
-                                                                        <option value="Undefined" selected>Undefined
-                                                                        </option>
-                                                                        
-                                                                        <% } else { %>
-                                                                            <option value="Male">Male</option>
-                                                                            <option value="Female">Female</option>
-                                                                            <option value="Undefined">Undefined</option>
-                                                                            <option value="S3" selected>S3</option>
-                                                                            <% } %>
-                                                        </select>
-                                                    </p>
-                                                    <button type="submit">Save</button>
-                                                </form>
-                                                <% } %>
+                                                                    <% } %>
+                                                </select>
+                                            </p>
+                                            <button type="submit">Save</button>
+                                        </form>
+                                        <% } %>
                     </div>
-            </body>
-        </html>
+    </body>
+
+</html>

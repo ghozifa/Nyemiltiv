@@ -41,7 +41,8 @@ router.get("/products/:id/deleteFood", Controller.deleteFood); // delete food by
 router.get("/products/:id/deleteBeverage", Controller.deleteBeverage); // delete beverage by id 
 
 // PROFILE USER
-router.post("/profiles/add", Controller.createProfile); // Create profile
+router.get("/profiles/add", Controller.createProfile); // Create profile1
+router.post("/profiles/add", Controller.createProfilePost); // Create profile1
 router.get("/profiles/:id", Controller.profileByUserId); // Detail profils with form edit profile
 router.post("/profiles/:id/edit", Controller.editProfile); // Edit profile
 

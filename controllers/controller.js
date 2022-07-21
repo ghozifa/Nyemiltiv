@@ -104,7 +104,7 @@ class Controller {
         const sessionId = req.session.userId;
         Category.findByPk(1)
             .then(result => {
-                res.render('addFood', { result, sessionId, errors }
+                res.render('addFood', { result, sessionId, errors })
             })
             .catch(err => {
                 res.send(err)
@@ -118,16 +118,14 @@ class Controller {
                 res.redirect("/food")
             })
             .catch(err => {
-                if (err.name == "SequelizeValidationError") {
-                let error = err.errors.map(el => {
-                    return el.message
-                }).join("; ");
-                res.redirect(`/food/add?error=${error}`)
+                let errors = err
+                if (err.name == 'SequelizeValidationError') {
+                    errors = err.errors.map(x => x.message)
                 }
-                res.send(err);
+                res.redirect(`/food/add?err=${errors}`)
             });
-        }
-        
+    }
+
     static beverage(req, res) {
         const sessionId = req.session.userId;
         const role = req.session.role;
@@ -249,7 +247,7 @@ class Controller {
 
     static profileByUserId(req, res) {
         const sessionId = req.session.userId;
-        const error = req.query.error;
+        const errors = req.query.err;
         const idUser = +req.params.id;
         Profile.findByPk(idUser, {
             include: User
@@ -257,9 +255,9 @@ class Controller {
             .then(result => {
                 if (!result) {
                     result = "Kosong"
-                    res.render('profile', { result, errors, sessionId, error })
+                    res.render('profile', { result, errors, sessionId })
                 } else {
-                    res.render('profile', { result, errors, sessionId, error })
+                    res.render('profile', { result, errors, sessionId })
                 }
             })
             .catch(err => {
@@ -268,13 +266,24 @@ class Controller {
     }
 
     static createProfile(req, res) {
+        const sessionId = req.session.userId;
+        const errors = req.query.err
+        res.render('addProfile', { errors, sessionId })
+
+    }
+
+    static createProfilePost(req, res) {
         let { firstName, lastName, address, phoneNumber, gender, UserId } = req.body
         Profile.create({ firstName, lastName, address, phoneNumber, gender, UserId })
             .then(result => {
                 res.redirect("/")
             })
             .catch(err => {
-                res.send(err);                
+                let errors = err
+                if (err.name == "SequelizeValidationError") {
+                    errors = err.errors.map(x => x.message)
+                }
+                res.redirect(`/profiles/add?err=${errors}`)
             });
     }
 
@@ -290,13 +299,12 @@ class Controller {
                 res.redirect(`/profiles/${idProfile}`)
             })
             .catch(err => {
+                let errors = err
                 if (err.name == "SequelizeValidationError") {
-                    let error = err.errors.map(el => {
-                        return el.message
-                    }).join("; ");
-                    res.redirect(`/profiles/add?error=${error}`)
-                    }
-                    res.send(err);
+                    errors = err.errors.map(x => x.message)
+                }
+                res.redirect(`/profiles/add?err=${errors}`)
+
             });
     }
 
