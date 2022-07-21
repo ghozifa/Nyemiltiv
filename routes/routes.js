@@ -12,6 +12,15 @@ router.post("/login", Controller.loginPost); // login
 router.get("/daftar", Controller.daftar); // daftar User
 router.post("/daftar", Controller.daftarPost); // Input data Daftar User
 
+// SET MIDDLEWARE SESSION
+router.use(function (req, res, next) {
+    if(!req.session.userId) {
+        const error = "Silahkan login terlebih dahulu";
+        return res.redirect(`/login?error=${error}`);
+    }
+    next();
+});
+
 // FOOD 
 router.get("/food", Controller.food); // Product with categories food
 router.get("/food/add", Controller.addFood); // Product with categories food
@@ -40,7 +49,7 @@ router.post("/profiles/:id/edit", Controller.editProfile); // Edit profile
 router.get("/products/:id/buy", Controller.buyProducts); // Buy product by id
 
 // LOGOUT
-
+router.get("/logout", Controller.logout);
 
 
 module.exports = router;

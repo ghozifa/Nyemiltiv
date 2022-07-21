@@ -4,11 +4,13 @@ const bcrypt = require("bcryptjs");
 
 
 class Controller {
-
+    
     static home(req, res) {
+        let notif = req.query.notif;
+        const sessionId = req.session.userId;
         Product.findAll()
             .then(result => {
-                res.render('home', { result, idrFormatter })
+                res.render('home', { result, idrFormatter, sessionId, notif })
             })
             .catch(err => {
                 res.send(err)
@@ -41,7 +43,9 @@ class Controller {
                 // compare plain password sama hash password
                 const isPassValid = bcrypt.compareSync(password, user.password);
                 if(isPassValid) {
-                    return res.redirect("/");
+                    req.session.userId = user.id; // set session id user
+                    req.session.role = user.role; // set session role user
+                    return res.redirect("/?notif=Berhasil Login");
                 }
                 return res.redirect(`/login?error=${error}`);
                 }
@@ -285,8 +289,17 @@ class Controller {
 
     static buyProducts(req, res) {
 
-
-    }    
+    }   
+    
+    static logout(req, res) {
+        req.session.destroy((err) => {
+            if(err) {
+                res.send(err);
+                return;
+            }
+            res.redirect("/?notif=Berhasil Logout");
+        });
+    }
 }
 
 module.exports = Controller;

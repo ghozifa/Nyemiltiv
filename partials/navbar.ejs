@@ -2,6 +2,11 @@
     <a href="/">Nyemiltiv</a> |
     <a href="/food">Foods</a> |
     <a href="/beverage">Beverages</a> |
-    <a href="/login">Login</a> |
-    <a href="/daftar">Daftar</a>
+    <% if(sessionId) { %>
+        <a href="/logout">Logout</a>
+    <% } else { %>
+        <a href="/daftar">Daftar</a> |
+        <a href="/login">Login</a>
+    <% } %>
+   
 </div>
