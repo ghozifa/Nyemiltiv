@@ -70,8 +70,8 @@ class Controller {
     }
 
     static createProfile(req, res) {
-        let { firstName, lastName, address, phoneNumber, gender } = req.body
-        Profile.create({ firstName, lastName, address, phoneNumber, gender })
+        let { firstName, lastName, address, phoneNumber, gender, UserId } = req.body
+        Profile.create({ firstName, lastName, address, phoneNumber, gender, UserId })
             .then(result => {
                 res.redirect("/")
             })
