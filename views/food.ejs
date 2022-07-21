@@ -5,56 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/food.css" rel="stylesheet" type="text/css">
+    <link href="/css/navbar.css" rel="stylesheet" type="text/css">
     <title>Nyemiltiv - Foods</title>
 </head>
 <%- include("../partials/navbar") %>
-
     <body>
         <div style="text-align:center">
             <h2><a href="/profiles/1">Profile</a></h2>
             <h1>Foods</h1>
             <p><a href="/food/add"><button>Add Food</button></a></p>
-            <br>
-            <table style="margin-left: auto;margin-right: auto;border: 1px solid; width: 1500px; height: 200px;">
-                <thead>
-                    <tr style="background-color:#00B8FF;text-align:center;height: 80px;">
-                        <th style="border: 1px solid;">Name</th>
-                        <th style="border: 1px solid;">Price</th>
-                        <th style="border: 1px solid;">Stock</th>
-                        <th style="border: 1px solid;">Image</th>
-                        <th style="border: 1px solid;">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% result.Products.forEach(x=> { %>
-                        <tr style="text-align:center">
-                            <td style="border: 1px solid;">
-                                <%= x.name %>
-                            </td>
-                            <td style="border: 1px solid;">
-                                <%= idrFormatter(x.price) %>
-                            </td>
-                            <td style="border: 1px solid;">
-                                <%= x.stock %>
-                            </td>
-                            <td style="border: 1px solid;">
-                                <img src="<%= x.imgUrl %>" style="width:200px">
-                            </td>
-                            <td style="border: 1px solid;">
-                                <a href="/products/<%= x.id %>"><button style="background-color:lightblue">See
-                                        Detail</button></a>
-                                <a href="/products/<%= x.id %>/buy"><button
-                                        style="background-color:lightgreen">Buy</button></a>
-                                <% if(role == "Admin") { %>
-                                <a href="/products/<%= x.id %>/deleteFood"><button
-                                        style="background-color:red">Delete</button></a>
-                                <% } %>
-                            </td>
-                        </tr>
-                        <% }); %>
-                </tbody>
-            </table>
-        </div>
+        </div>    
+        <% result.Products.forEach(x=> { %>
+            <div class="card">
+                <img src="<%= x.imgUrl %>" alt="food-beverage" style="width:300px" height="300px">
+                <div class="container">
+                  <h4><b><%= x.name %></b></h4>
+                  <p>Stock : <%= x.stock %> </p>
+                  <p>Price: <%= idrFormatter(x.price) %></p>
+                  <a href="/products/<%= x.id %>/buy"><button style="background-color:lightgreen">Buy</button></a>
+                  <% if(role == "Admin") { %>
+                  <a href="/products/<%= x.id %>/deleteFood"><button style="background-color:red">Delete</button></a>
+                  <% } %>
+                </div>
+              </div>
+              <% }); %>
     </body>
 
 </html>
