@@ -9,7 +9,7 @@
 <%- include("../partials/nav-daftar")%>
 <body>
     <h1>Daftar</h1>
-    <form action="/login" method="post">
+    <form action="/daftar" method="post">
         <div>
             <label for="email">Email</label>
             <input type="text" name="email" placeholder="ex: abc@mail.com">
@@ -19,7 +19,15 @@
             <input type="password" name="password" placeholder="ex: aBeCe441">
         </div>
         <div>
-            <a href="/login"><button type="submit">Daftar</button></a>
+            <label for="role">Role</label>
+            <select name="role">
+                <option selected disabled hidden>-- Pilih Role --</option>
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+        </div>
+        <div>
+            <a href="/daftar"><button type="submit">Daftar</button></a>
         </div>
     </form>
 </body>

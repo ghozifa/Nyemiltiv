@@ -15,8 +15,8 @@ class Controller {
     }
 
     static daftarPost(req, res) {
-        const { email, password } = req.body;
-        UserProduct.create({ email, password })
+        const { email, password, role } = req.body;
+        UserProduct.create({ email, password, role })
         .then(() => {
             res.redirect("/login")
         })
