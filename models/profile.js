@@ -89,7 +89,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Profile'
+    modelName: 'Profile',
   });
   return Profile;
 };
