@@ -167,12 +167,13 @@ class Controller {
 
     static productsDetailById(req, res) {
         const sessionId = req.session.userId;
+        const role = req.session.role;
         const idProduct = +req.params.id
         Product.findByPk(idProduct, {
             include: Category
         })
             .then(result => {
-                res.render('productsDetailById', { result, dateFormatter, idrFormatter, sessionId })
+                res.render('productsDetailById', { result, dateFormatter, idrFormatter, sessionId, role })
             })
             .catch(err => {
                 res.send(err)
