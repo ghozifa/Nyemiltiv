@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyemiltiv - Foods</title>
+</head>
+<%- include("../partials/navbar") %>
+
+    <body>
+        <div style="text-align:center">
+            <h1>
+                <%= result.name %>
+            </h1>
+            <img src="<%= result.imgUrl %>" style="width:400px">
+            <p>
+                Category : <%= result.Category.name%>
+            </p>
+            <p>
+                Description : <%= result.description %>
+            </p>
+            <p>
+                Price : <%= idrFormatter(result.price) %>
+            </p>
+            <p>
+                Stock : <%= result.stock %>
+            </p>
+            <a href="/products/<%= result.id %>/buy"><button style="background-color:lightgreen">Buy</button></a>
+        </div>
+    </body>
+
+</html>

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nyemiltiv</title>
+    <title>Nyemiltiv - Beverages</title>
 </head>
 <%- include("../partials/navbar") %>
 
     <body>
         <div style="text-align:center">
             <h2><a href="/profiles/1">Profile</a></h2>
-            <h1>All Products</h1>
+            <h1>Beverages</h1>
             <br>
             <table style="margin-left: auto;margin-right: auto;border: 1px solid; width: 1500px; height: 200px;">
                 <thead>
@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% result.forEach(x=> { %>
+                    <% result.Products.forEach(x=> { %>
                         <tr style="text-align:center">
                             <td style="border: 1px solid;">
                                 <%= x.name %>

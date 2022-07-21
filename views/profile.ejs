@@ -1,12 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nyemiltiv - Profile</title>
 </head>
+
 <body>
-    
-</body>
+    <%- include("../partials/navbar") %>
+
+        <body>
+            <div style="text-align:center">
+                <h1>Profile</h1>
+                <p>
+                    First Name : <%= result.firstName %>
+                </p>
+                <p>
+                    Last Name : <%= result.lastName %>
+                </p>
+                <p>
+                    Email : <%= result.User.email %>
+                </p>
+                <p>
+                    Address : <%= result.address %>
+                </p>
+                <p>
+                    Phone Number : <%= result.phoneNumber %>
+                </p>
+                <p>
+                    Gender : <%= result.gender %>
+                </p>
+            </div>
+            <div style="text-align:center">
+                <br>
+                <h2>Create Profile</h2>
+                <form action="/profiles/<%= result.User.id %>" method="post">
+                    <p>
+                        <label for="firstName">First Name</label>
+                        <br>
+                        <input style="width: 300px;" id="firstName" type="text" name="firstName"
+                            placeholder="Input first name here...">
+                    </p>
+                    <p>
+                        <label for="lastName">Last Name</label>
+                        <br>
+                        <input style="width: 300px;" id="lastName" type="text" name="lastName"
+                            placeholder="Input store last name here...">
+                    </p>
+                    <p>
+                        <label for="address">Address</label>
+                        <br>
+                        <input style="width: 300px;" id="address" type="text" name="address"
+                            placeholder="Input adress here...">
+                    </p>
+                    <p>
+                        <label for="phoneNumber">Phone Number</label>
+                        <br>
+                        <input style="width: 300px;" id="phoneNumber" type="number" name="phoneNumber"
+                            placeholder="Input phone number here...">
+                    </p>
+                    <p>
+                        <label for="gender">Gender</label>
+                        <br>
+                        <input style="width: 300px;" id="gender" type="text" name="gender">
+                    </p>
+                    <button type="submit">Add Profile</button>
+                </form>
+            </div>
+        </body>
+
 </html>
