@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+const bcrypt = require("bcryptjs");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -16,12 +15,60 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: DataTypes.STRING
+    email: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notNull: {
+          msg: "Email wajib diisi!"
+        },
+        notEmpty: {
+          msg: "Email wajib diisi!"
+        },
+        isEmail: {
+          args: true,
+          msg: "Email tidak sesuai format"
+        },
+      },
+      unique: {
+        args: "email",
+        msg: "Email telah terdaftar, gunakan email lain"
+      }
+    },
+    password: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notNull: {
+          msg: "Password harus diisi!"
+        },
+        notEmpty: {
+          msg: "Password harus diisi!"
+        }
+      }
+    },
+    role: {
+     allowNull: false, 
+     type: DataTypes.STRING,
+     validate: {
+      notNull: {
+        msg: "Silahkan pilih role terlebih dahulu"
+      },
+      notEmpty: {
+        msg: "Silahkan pilih role terlebih dahulu"
+      }
+     }
+    }
   }, {
     sequelize,
     modelName: 'User',
   });
+
+  User.beforeCreate((user, option) => {
+    const salt = bcrypt.genSaltSync(5);
+    const hash = bcrypt.hashSync(user.password, salt);
+    user.password = hash;
+  })
+
   return User;
 };

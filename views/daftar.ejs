@@ -9,6 +9,9 @@
 <%- include("../partials/nav-daftar")%>
 <body>
     <h1>Daftar</h1>
+    <% if(error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
     <form action="/daftar" method="post">
         <div>
             <label for="email">Email</label>
