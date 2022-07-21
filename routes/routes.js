@@ -14,7 +14,7 @@ router.post("/daftar", Controller.daftarPost); // Input data Daftar User
 
 // SET MIDDLEWARE SESSION
 router.use(function (req, res, next) {
-    if(!req.session.userId) {
+    if (!req.session.userId) {
         const error = "Silahkan login terlebih dahulu";
         return res.redirect(`/login?error=${error}`);
     }
