@@ -1,0 +1,42 @@
+[
+    {
+        "firstName":"Tatiania",
+        "lastName":"Ellerman",
+        "address":"1905 Jenna Point",
+        "phoneNumber": 77775,
+        "gender":"Female",
+        "UserId": 1
+    },
+    {
+        "firstName":"Che",
+        "lastName":"Elt",
+        "address":"01027 Susan Way",
+        "phoneNumber": 776681,
+        "gender":"Male",
+        "UserId": 2
+    },
+    {
+        "firstName":"Gwenore",
+        "lastName":"Lamble",
+        "address":"86268 Lake View Circle",
+        "phoneNumber":689621,
+        "gender":"Non-binary",
+        "UserId": 1
+    },
+    {
+        "firstName":"Leilah",
+        "lastName":"Harrop",
+        "address":"4526 Bobwhite Road",
+        "phoneNumber": 340982,
+        "gender":"Female",
+        "UserId": 3
+    },
+    {
+        "firstName":"Louisa",
+        "lastName":"McAlinden",
+        "address":"5 Commercial Place",
+        "phoneNumber": 100634,
+        "gender":"Female",
+        "UserId": 4
+    }
+]

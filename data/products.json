@@ -1,0 +1,42 @@
+[
+    {
+        "name":"Tea - Orange Pekoe",
+        "description":"Other ovarian dysfunction",
+        "stock":12,
+        "expiredDate":"26/03/2022",
+        "imgUrl":"http://dummyimage.com/124x100.png/cc0000/ffffff",
+        "CategoryId": 2
+    },
+    {
+        "name":"Beans - Butter Lrg Lima",
+        "description":"Disp fx of greater tuberosity of unsp humer, 7thG",
+        "stock":19,"expiredDate":"25/04/2022",
+        "imgUrl":"http://dummyimage.com/107x100.png/dddddd/000000",
+        "CategoryId": 1
+    },
+    {
+        "name":"Clementine",
+        "description":"Oth specific arthropathies, NEC, unsp site",
+        "stock":19,
+        "expiredDate":"30/04/2022",
+        "imgUrl":"http://dummyimage.com/193x100.png/dddddd/000000",
+        "CategoryId": 2
+    },
+    {
+        "name":"Cod - Salted, Boneless",
+        "description":"Partial traumatic amputation at right hip joint, subs encntr",
+        "stock":17,
+        "expiredDate":
+        "12/02/2022",
+        "imgUrl":"http://dummyimage.com/118x100.png/cc0000/ffffff",
+        "CategoryId": 1
+    },
+    {
+        "name":"Cabbage - Nappa",
+        "description":"2-part nondisp fx of surg nk of l humer, 7thK",
+        "stock":17,
+        "expiredDate":"05/10/2021",
+        "imgUrl":"http://dummyimage.com/165x100.png/5fa2dd/ffffff",
+        "CategoryId": 1
+    }
+]
