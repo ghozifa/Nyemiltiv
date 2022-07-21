@@ -13,48 +13,50 @@
         <div style="text-align:center">
             <br>
             <h2>Add Food</h2>
-            <% if(error) { %>
-                <p><%= error %></p>
-            <% } %>
-            <form action="/food/add" method="post">
-                <p>
-                    <label for="name">Name</label>
-                    <br>
-                    <input style="width: 300px;" id="name" type="text" name="name"
-                        placeholder="Input food name here...">
+            <% if(errors) { %>
+                <p style="color:red">
+                    <%= errors %>
                 </p>
-                <p>
-                    <label for="description">Description</label>
-                    <br>
-                    <input style="width: 300px;" id="description" type="text" name="description"
-                        placeholder="Input description here...">
-                </p>
-                <p>
-                    <label for="price">Price</label>
-                    <br>
-                    <input style="width: 300px;" id="price" type="number" name="price"
-                        placeholder="Input price here...">
-                </p>
-                <p>
-                    <label for="stock">Stock</label>
-                    <br>
-                    <input style="width: 300px;" id="stock" type="number" name="stock"
-                        placeholder="Input stock here...">
-                </p>
-                <p>
-                    <label for="expiredDate">Expired Date</label>
-                    <br>
-                    <input style="width: 300px;" id="expiredDate" type="date" name="expiredDate">
-                </p>
-                <p>
-                    <label for="imgUrl">Image Url</label>
-                    <br>
-                    <input style="width: 300px;" id="imgUrl" type="text" name="imgUrl"
-                        placeholder="Input image url here...">
-                </p>
-                <input type="hidden" name="CategoryId" value="<%= result.id %>">
-                <button type="submit">Add Food</button>
-            </form>
+                <% } %>
+                    <form action="/food/add" method="post">
+                        <p>
+                            <label for="name">Name</label>
+                            <br>
+                            <input style="width: 300px;" id="name" type="text" name="name"
+                                placeholder="Input food name here...">
+                        </p>
+                        <p>
+                            <label for="description">Description</label>
+                            <br>
+                            <input style="width: 300px;" id="description" type="text" name="description"
+                                placeholder="Input description here...">
+                        </p>
+                        <p>
+                            <label for="price">Price</label>
+                            <br>
+                            <input style="width: 300px;" id="price" type="number" name="price"
+                                placeholder="Input price here...">
+                        </p>
+                        <p>
+                            <label for="stock">Stock</label>
+                            <br>
+                            <input style="width: 300px;" id="stock" type="number" name="stock"
+                                placeholder="Input stock here...">
+                        </p>
+                        <p>
+                            <label for="expiredDate">Expired Date</label>
+                            <br>
+                            <input style="width: 300px;" id="expiredDate" type="date" name="expiredDate">
+                        </p>
+                        <p>
+                            <label for="imgUrl">Image Url</label>
+                            <br>
+                            <input style="width: 300px;" id="imgUrl" type="text" name="imgUrl"
+                                placeholder="Input image url here...">
+                        </p>
+                        <input type="hidden" name="CategoryId" value="<%= result.id %>">
+                        <button type="submit">Add Food</button>
+                    </form>
         </div>
 </body>
 

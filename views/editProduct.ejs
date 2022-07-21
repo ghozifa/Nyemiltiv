@@ -13,58 +13,63 @@
         <div style="text-align:center">
             <br>
             <h2>Edit Product</h2>
-            <form action="/products/<%= result.id %> /edit" method="post">
-                <p>
-                    <label for="name">Name</label>
-                    <br>
-                    <input style="width: 300px;" id="name" type="text" name="name" placeholder="Input food name here..."
-                        value="<%= result.name %>">
+            <% if(errors) { %>
+                <p style="color:red">
+                    <%= errors %>
                 </p>
-                <p>
-                    <label for="description">Description</label>
-                    <br>
-                    <input style="width: 300px;" id="description" type="text" name="description"
-                        placeholder="Input description here..." value="<%= result.description %>">
-                </p>
-                <p>
-                    <label for="price">Price</label>
-                    <br>
-                    <input style="width: 300px;" id="price" type="number" name="price" placeholder="Input price here..."
-                        value="<%= result.price %>">
-                </p>
-                <p>
-                    <label for="stock">Stock</label>
-                    <br>
-                    <input style="width: 300px;" id="stock" type="number" name="stock" placeholder="Input stock here..."
-                        value="<%= result.stock %>">
-                </p>
-                <p>
-                    <label for="expiredDate">Expired Date</label>
-                    <br>
-                    <input style="width: 300px;" id="expiredDate" type="date" name="expiredDate"
-                        value="<%= dateFormatter(result.expiredDate) %>">
-                </p>
-                <p>
-                    <label for="imgUrl">Image Url</label>
-                    <br>
-                    <input style="width: 300px;" id="imgUrl" type="text" name="imgUrl"
-                        placeholder="Input image url here..." value="<%= result.imgUrl %>">
-                </p>
-                <p>
-                    <label for="CategoryId">Category</label>
-                    <br>
-                    <select style="width: 300px;" id="CategoryId" name="CategoryId">
-                        <% if (result.CategoryId==1 ) { %>
-                            <option value="1" selected>Food</option>
-                            <option value="2">Beverage</option>
-                            <% } else { %>
-                                <option value="1">Food</option>
-                                <option value="2" selected>Beverage</option>
-                                <% } %>
-                    </select>
-                </p>
-                <button type="submit">Update Food</button>
-            </form>
+                <% } %>
+                    <form action="/products/<%= result.id %> /edit" method="post">
+                        <p>
+                            <label for="name">Name</label>
+                            <br>
+                            <input style="width: 300px;" id="name" type="text" name="name"
+                                placeholder="Input food name here..." value="<%= result.name %>">
+                        </p>
+                        <p>
+                            <label for="description">Description</label>
+                            <br>
+                            <input style="width: 300px;" id="description" type="text" name="description"
+                                placeholder="Input description here..." value="<%= result.description %>">
+                        </p>
+                        <p>
+                            <label for="price">Price</label>
+                            <br>
+                            <input style="width: 300px;" id="price" type="number" name="price"
+                                placeholder="Input price here..." value="<%= result.price %>">
+                        </p>
+                        <p>
+                            <label for="stock">Stock</label>
+                            <br>
+                            <input style="width: 300px;" id="stock" type="number" name="stock"
+                                placeholder="Input stock here..." value="<%= result.stock %>">
+                        </p>
+                        <p>
+                            <label for="expiredDate">Expired Date</label>
+                            <br>
+                            <input style="width: 300px;" id="expiredDate" type="date" name="expiredDate"
+                                value="<%= dateFormatter(result.expiredDate) %>">
+                        </p>
+                        <p>
+                            <label for="imgUrl">Image Url</label>
+                            <br>
+                            <input style="width: 300px;" id="imgUrl" type="text" name="imgUrl"
+                                placeholder="Input image url here..." value="<%= result.imgUrl %>">
+                        </p>
+                        <p>
+                            <label for="CategoryId">Category</label>
+                            <br>
+                            <select style="width: 300px;" id="CategoryId" name="CategoryId">
+                                <% if (result.CategoryId==1 ) { %>
+                                    <option value="1" selected>Food</option>
+                                    <option value="2">Beverage</option>
+                                    <% } else { %>
+                                        <option value="1">Food</option>
+                                        <option value="2" selected>Beverage</option>
+                                        <% } %>
+                            </select>
+                        </p>
+                        <button type="submit">Update Food</button>
+                    </form>
         </div>
 </body>
 
