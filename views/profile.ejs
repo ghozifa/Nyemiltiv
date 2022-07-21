@@ -10,7 +10,7 @@
 
 <body>
     <%- include("../partials/navbar") %>
-        <% if (result=="Kosong" ) { %>
+        <% if (result == "Kosong" ) { %>
             <% } else { %>
                 <div style="text-align:center">
                     <h1>Profile</h1>
@@ -36,7 +36,7 @@
                 <% } %>
                     <div style="text-align:center">
                         <br>
-                        <% if (result=="Kosong" ) { %>
+                        <% if (result == "Kosong" ) { %>
                             <h2>Create Profile</h2>
                             <form action="/profiles/add" method="post">
                                 <p>
@@ -128,7 +128,7 @@
                                                             <% } %>
                                         </select>
                                     </p>
-                                    <button type="submit">Add Profile</button>
+                                    <button type="submit">Save</button>
                                 </form>
                                 <% } %>
                     </div>

@@ -45,8 +45,10 @@
                                         Detail</button></a>
                                 <a href="/products/<%= x.id %>/buy"><button
                                         style="background-color:lightgreen">Buy</button></a>
+                                <% if(role == "Admin") { %>
                                 <a href="/products/<%= x.id %>/deleteFood"><button
                                         style="background-color:red">Delete</button></a>
+                                <% } %>
                             </td>
                         </tr>
                         <% }); %>

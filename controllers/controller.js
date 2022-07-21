@@ -86,11 +86,13 @@ class Controller {
     }
 
     static food(req, res) {
+        const sessionId = req.session.userId;
+        const role = req.session.role;
         Category.findByPk(1, {
             include: Product
         })
             .then(result => {
-                res.render('food', { result, idrFormatter })
+                res.render('food', { result, idrFormatter, sessionId, role })
             })
             .catch(err => {
                 res.send(err)
@@ -98,9 +100,10 @@ class Controller {
     }
 
     static addFood(req, res) {
+        const sessionId = req.session.userId;
         Category.findByPk(1)
             .then(result => {
-                res.render('addFood', { result })
+                res.render('addFood', { result, sessionId })
             })
             .catch(err => {
                 res.send(err)
@@ -120,12 +123,27 @@ class Controller {
                 }
                 res.redirect(`/food/add?err=${errors}`)
             })
+        }
+        
+    static beverage(req, res) {
+        const sessionId = req.session.userId;
+        const role = req.session.role;
+        Category.findByPk(2, {
+            include: Product
+        })
+            .then(result => {
+                res.render('beverage', { result, idrFormatter, sessionId, role })
+            })
+            .catch(err => {
+                res.send(err)
+            })
     }
 
     static addBeverage(req, res) {
+        const sessionId = req.session.userId;
         Category.findByPk(2)
             .then(result => {
-                res.render('addBeverage', { result })
+                res.render('addBeverage', { result, sessionId })
             })
             .catch(err => {
                 res.send(err)
@@ -147,25 +165,14 @@ class Controller {
             })
     }
 
-    static beverage(req, res) {
-        Category.findByPk(2, {
-            include: Product
-        })
-            .then(result => {
-                res.render('beverage', { result, idrFormatter })
-            })
-            .catch(err => {
-                res.send(err)
-            })
-    }
-
     static productsDetailById(req, res) {
+        const sessionId = req.session.userId;
         const idProduct = +req.params.id
         Product.findByPk(idProduct, {
             include: Category
         })
             .then(result => {
-                res.render('productsDetailById', { result, dateFormatter, idrFormatter })
+                res.render('productsDetailById', { result, dateFormatter, idrFormatter, sessionId })
             })
             .catch(err => {
                 res.send(err)
@@ -173,10 +180,11 @@ class Controller {
     }
 
     static editProduct(req, res) {
+        const sessionId = req.session.userId;
         const idProduct = +req.params.id
         Product.findByPk(idProduct)
             .then(result => {
-                res.render('editProduct', { result, dateFormatter })
+                res.render('editProduct', { result, dateFormatter, sessionId })
             })
             .catch(err => {
                 res.send(err)
@@ -234,6 +242,7 @@ class Controller {
     }
 
     static profileByUserId(req, res) {
+        const sessionId = req.session.userId;
         let errors = req.query.err
         const idUser = +req.params.id
         Profile.findByPk(idUser, {
@@ -242,9 +251,9 @@ class Controller {
             .then(result => {
                 if (!result) {
                     result = "Kosong"
-                    res.render('profile', { result, errors })
+                    res.render('profile', { result, errors, sessionId })
                 } else {
-                    res.render('profile', { result, errors })
+                    res.render('profile', { result, errors, sessionId })
                 }
             })
             .catch(err => {
