@@ -51,16 +51,61 @@ class Controller {
     }
 
     static profileByUserId(req, res) {
+        let errors = req.query.err
         const idUser = +req.params.id
         Profile.findByPk(idUser, {
             include: User
         })
             .then(result => {
-                res.render('profile', { result })
+                if (!result) {
+                    result = "Kosong"
+                    res.render('profile', { result, errors })
+                } else {
+                    res.render('profile', { result, errors })
+                }
             })
             .catch(err => {
                 res.send(err)
             })
+    }
+
+    static createProfile(req, res) {
+        let { firstName, lastName, address, phoneNumber, gender } = req.body
+        Profile.create({ firstName, lastName, address, phoneNumber, gender })
+            .then(result => {
+                res.redirect("/")
+            })
+            .catch(err => {
+                let errors = err
+                if (err.name == 'SequelizeValidationError') {
+                    errors = err.errors.map(x => x.message)
+                }
+                res.redirect(`/profiles/add?err=${errors}`)
+            })
+    }
+
+    static editProfile(req, res) {
+        const idProfile = +req.params.id
+        let { firstName, lastName, address, phoneNumber, gender } = req.body
+        Profile.update({ firstName, lastName, address, phoneNumber, gender }, {
+            where: {
+                id: idProfile
+            }
+        })
+            .then(result => {
+                res.redirect(`/profiles/${idProfile}`)
+            })
+            .catch(err => {
+                let errors = err
+                if (err.name == 'SequelizeValidationError') {
+                    errors = err.errors.map(x => x.message)
+                }
+                res.redirect(`/profiles/add?err=${errors}`)
+            })
+    }
+
+    static buyProducts(req, res) {
+
     }
 
 
