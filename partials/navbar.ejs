@@ -2,6 +2,9 @@
     <li style="font-weight: bold; font-style: italic; float: left;"><a href="/" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Nyemiltiv</a></li>
     <li style="float: left;"><a href="/food" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Foods</a></li>
     <li style="float: left;"><a href="/beverage" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Beverages</a></li>
+    <% if (role == "Admin") { %>
+        <li style="float: left;"><a href="/emptyStock" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Empty Stock</a></li>
+    <% } %>
     <% if(sessionId) { %>
     <li style="float: left;"><a href="/profiles/<%= sessionId %>" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Profile</a></li>   
     <li style="float: left;"><a href="/logout" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Logout</a></li>

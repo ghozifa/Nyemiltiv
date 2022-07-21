@@ -15,6 +15,10 @@
         <p style="color: red; text-align:center"><%= error %></p>
         <hr>
     <% } %>
+    <% if(notif) { %>
+        <p style="text-align:center"><%= notif %></p>
+        <hr>
+    <% } %>
     <form action="/login" method="post">
         <div style="text-align:center">
             <label for="username" style="font-weight: bold;">Email</label>

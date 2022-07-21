@@ -1,6 +1,7 @@
 const { User, UserProduct, Profile, Category, Product } = require("../models");
 const { idrFormatter, dateFormatter } = require("../helpers/helper")
 const bcrypt = require("bcryptjs");
+const { Op } = require("sequelize");
 
 
 class Controller {
@@ -8,9 +9,39 @@ class Controller {
     static home(req, res) {
         let notif = req.query.notif;
         const sessionId = req.session.userId;
-        Product.findAll()
+        const role = req.session.role;
+        const search = req.query.search;
+        let temp;
+        if(search) {
+            temp = {[Op.iLike] : `%${search}%`}
+        } else {
+            temp = {[Op.iLike] : `%%`}
+        }
+        Product.findAll({
+            where: {
+                stock: {[Op.gt] : 0 },
+                name: temp
+            }
+        })
             .then(result => {
-                res.render('home', { result, idrFormatter, sessionId, notif })
+                if (!result.length) {
+                    notif = "Item not found"
+                }
+                res.render('home', { result, idrFormatter, sessionId, notif, role })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static emptyStock(req, res) {
+        const sessionId = req.session.userId;
+        const role = req.session.role;
+        Product.findAll({
+            where: {stock: 0}
+        })
+            .then(result => {
+                res.render('emptyStock', { result, idrFormatter, sessionId, role })
             })
             .catch(err => {
                 res.send(err)
@@ -18,8 +49,9 @@ class Controller {
     }
 
     static login(req, res) {
-        let error = req.query.error;
-        res.render("login", { error });
+        const error = req.query.error;
+        const notif = req.query.notif;
+        res.render("login", { error, notif });
     }
 
     static loginPost(req, res) {
@@ -65,7 +97,7 @@ class Controller {
         const { email, password, role } = req.body;
         User.create({ email, password, role })
             .then(() => {
-                res.redirect("/login")
+                res.redirect("/login?notif=Daftar User Berhasil")
             })
             .catch(err => {
                 let error;
@@ -101,10 +133,11 @@ class Controller {
 
     static addFood(req, res) {
         const sessionId = req.session.userId;
+        const role = req.session.role;
         let error = req.query.error;
         Category.findByPk(1)
             .then(result => {
-                res.render('addFood', { result, sessionId, error })
+                res.render('addFood', { result, sessionId, error, role })
             })
             .catch(err => {
                 res.send(err)
@@ -142,9 +175,10 @@ class Controller {
 
     static addBeverage(req, res) {
         const sessionId = req.session.userId;
+        const role = req.session.role;
         Category.findByPk(2)
             .then(result => {
-                res.render('addBeverage', { result, sessionId })
+                res.render('addBeverage', { result, sessionId, role })
             })
             .catch(err => {
                 res.send(err)
@@ -183,10 +217,11 @@ class Controller {
 
     static editProduct(req, res) {
         const sessionId = req.session.userId;
+        const role = req.session.role;
         const idProduct = +req.params.id
         Product.findByPk(idProduct)
             .then(result => {
-                res.render('editProduct', { result, dateFormatter, sessionId })
+                res.render('editProduct', { result, dateFormatter, sessionId, role })
             })
             .catch(err => {
                 res.send(err)
@@ -245,6 +280,7 @@ class Controller {
 
     static profileByUserId(req, res) {
         const sessionId = req.session.userId;
+        const role = req.session.role;
         const errors = req.query.err;
         const idUser = +req.params.id;
         Profile.findByPk(idUser, {
@@ -253,9 +289,9 @@ class Controller {
             .then(result => {
                 if (!result) {
                     result = "Kosong"
-                    res.render('profile', { result, errors, sessionId })
+                    res.render('profile', { result, errors, sessionId, role })
                 } else {
-                    res.render('profile', { result, errors, sessionId })
+                    res.render('profile', { result, errors, sessionId, role })
                 }
             })
             .catch(err => {
@@ -265,8 +301,9 @@ class Controller {
 
     static createProfile(req, res) {
         const sessionId = req.session.userId;
+        const role = req.session.role;
         const errors = req.query.err
-        res.render('addProfile', { errors, sessionId })
+        res.render('addProfile', { errors, sessionId, role })
 
     }
 

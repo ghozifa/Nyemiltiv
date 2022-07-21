@@ -24,7 +24,9 @@
                   <h4><b><%= x.name %></b></h4>
                   <p>Stock : <%= x.stock %> </p>
                   <p>Price: <%= idrFormatter(x.price) %></p>
-                  <a href="/products/<%= x.id %>/buy"><button style="background-color:lightgreen; border-radius: 4px;">Buy</button></a>
+                  <% if(role == "User") { %>
+                    <a href="/products/<%= x.id %>/buy"><button style="background-color:lightgreen; border-radius: 4px; padding: 3px;">Buy</button></a>
+                  <% } %>
                   <% if(role == "Admin") { %>
                     <a href="/products/<%= x.id %>/deleteBeverage"><button style="background-color:red; border-radius: 4px;">Delete</button></a>
                     <% } %>

@@ -1,15 +1,9 @@
 const Controller = require("../controllers/controller");
 const router = require("express").Router();
 
-
-router.use(function (req, res, next) {
-    if (req.session) {
-        next();
-    }
-});
-
 // INDEX
 router.get("/", Controller.home); // Home index toko
+router.get("/emptyStock", Controller.emptyStock); // cek stock kosong
 
 // LOGIN
 router.get("/login", Controller.login); // page form login

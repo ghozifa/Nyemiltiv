@@ -27,7 +27,9 @@
             <p>
                 Stock : <%= result.stock %>
             </p>
+            <% if(role == "User") { %>
             <a href="/products/<%= result.id %>/buy"><button style="background-color:lightgreen; border-radius: 4px; padding: 3px;">Buy</button></a>
+            <% } %>
             <% if(role == "Admin") { %>
             <a href="/products/<%= result.id %>/edit"><button style="background-color:lightpink; border-radius: 4px; padding: 3px; ">Edit</button></a>
             <% } %>
