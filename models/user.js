@@ -52,16 +52,16 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     role: {
-     allowNull: false, 
-     type: DataTypes.STRING,
-     validate: {
-      notNull: {
-        msg: "Silahkan pilih role terlebih dahulu"
-      },
-      notEmpty: {
-        msg: "Silahkan pilih role terlebih dahulu"
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notNull: {
+          msg: "Silahkan pilih role terlebih dahulu"
+        },
+        notEmpty: {
+          msg: "Silahkan pilih role terlebih dahulu"
+        }
       }
-     }
     }
   }, {
     sequelize,

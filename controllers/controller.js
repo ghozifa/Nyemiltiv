@@ -162,7 +162,7 @@ class Controller {
                 if (err.name == 'SequelizeValidationError') {
                     errors = err.errors.map(x => x.message)
                 }
-                res.redirect(`/food/add?err=${errors}`)
+                res.redirect(`/beverage/add?err=${errors}`)
             })
     }
 
@@ -307,11 +307,19 @@ class Controller {
     }
 
     static buyProducts(req, res) {
-        const sessionId = req.session.userId;
-        UserProduct.findAll({
-
-        })
-
+        const idProduct = +req.params.id
+        Product.findByPk(idProduct)
+            .then((product) => {
+                if (!product) throw 'Product not found'
+                if (product.stock == 0) throw 'Product empty'
+                return product.decrement("stock", { by: 1 })
+            })
+            .then(result => {
+                res.redirect('/')
+            })
+            .catch(err => {
+                res.send(err)
+            })
     }
 
     static logout(req, res) {
