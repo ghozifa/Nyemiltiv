@@ -8,10 +8,6 @@ router.get("/", Controller.home); // Home index toko
 router.get("/login", Controller.login); // page form login
 router.post("/login", Controller.loginPost); // login
 
-// DAFTAR USER
-router.get("/daftar", Controller.daftar); // daftar User
-router.post("/daftar", Controller.daftarPost); // Input data Daftar User
-
 // SET MIDDLEWARE SESSION
 router.use(function (req, res, next) {
     if (!req.session.userId) {
@@ -20,6 +16,11 @@ router.use(function (req, res, next) {
     }
     next();
 });
+
+// DAFTAR USER
+router.get("/daftar", Controller.daftar); // daftar User
+router.post("/daftar", Controller.daftarPost); // Input data Daftar User
+
 
 // FOOD 
 router.get("/food", Controller.food); // Product with categories food

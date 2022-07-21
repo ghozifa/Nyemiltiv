@@ -17,6 +17,7 @@ app.use(session({
     }
   }));
 app.use(router);
+app.use(express.static(__dirname + '/public'));
 
 app.listen(port, () => {
     console.log(`Listening to port ${port}`)

@@ -1,12 +1,11 @@
-<div style="text-align:center">
-    <a href="/">Nyemiltiv</a> |
-    <a href="/food">Foods</a> |
-    <a href="/beverage">Beverages</a> |
+<ul>
+    <li style="font-weight: bold; font-style: italic;"><a href="/">Nyemiltiv</a></li>
+    <li><a href="/food">Foods</a></li>
+    <li><a href="/beverage">Beverages</a></li>
     <% if(sessionId) { %>
-        <a href="/logout">Logout</a>
+    <li><a href="/logout">Logout</a></li>
     <% } else { %>
-        <a href="/daftar">Daftar</a> |
-        <a href="/login">Login</a>
+    <li><a href="/daftar">Daftar</a></li>
+    <li><a href="/login">Login</a></li>
     <% } %>
-   
-</div>
+</ul>
