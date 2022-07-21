@@ -9,29 +9,35 @@
 </head>
 <%- include("../partials/nav-daftar")%>
 <body>
-    <h1>Daftar</h1>
+    <h1 style="text-align:center">Daftar</h1>
+    <hr>
     <% if(error) { %>
-        <p style="color: red;"><%= error %></p>
+        <p style="color: red; text-align:center"><%= error %></p>
+        <hr>
     <% } %>
     <form action="/daftar" method="post">
-        <div>
-            <label for="email">Email</label>
-            <input type="text" name="email" placeholder="ex: abc@mail.com">
+        <div style="text-align:center">
+            <label for="email" for="username" style="font-weight: bold;">Email</label>
+            <br>
+            <input type="text" name="email" placeholder="ex: abc@mail.com" style="width: 15%; padding: 12px 20px; margin: 8px 0; box-sizing: border-box">
         </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" placeholder="ex: aBeCe441">
+        <div style="text-align:center">
+            <label for="password" style="font-weight: bold;">Password</label>
+            <br>
+            <input type="password" name="password" placeholder="ex: aBeCe441" style="width: 15%; padding: 12px 20px; margin: 8px 0; box-sizing: border-box">
         </div>
-        <div>
-            <label for="role">Role</label>
-            <select name="role">
+        <div style="text-align:center">
+            <label for="role" style="font-weight: bold;">Role</label>
+            <br>
+            <select name="role">    
                 <option selected disabled hidden>-- Pilih Role --</option>
                 <option value="Admin">Admin</option>
                 <option value="User">User</option>
             </select>
         </div>
-        <div>
-            <a href="/daftar"><button type="submit">Daftar</button></a>
+        <br>
+        <div style="text-align:center">
+            <a href="/daftar"><button type="submit" style="border-radius: 4px; background-color: rgb(87, 105, 244); color: white; padding: 5px;">Daftar</button></a>
         </div>
     </form>
 </body>

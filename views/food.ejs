@@ -12,10 +12,9 @@
 <%- include("../partials/navbar") %>
     <body>
         <div style="text-align:center">
-            <h2><a href="/profiles/1">Profile</a></h2>
             <h1>Foods</h1>
             <% if(role == "Admin") { %>
-            <p><a href="/food/add"><button>Add Food</button></a></p>
+            <p><a href="/food/add"><button style="border-radius: 4px; background-color: rgb(87, 105, 244); color: white; padding: 5px;">Add Food</button></a></p>
             <% } %>
         </div>    
         <% result.Products.forEach(x=> { %>
@@ -25,13 +24,13 @@
                   <h4><b><%= x.name %></b></h4>
                   <p>Stock : <%= x.stock %> </p>
                   <p>Price: <%= idrFormatter(x.price) %></p>
-                  <a href="/products/<%= x.id %>/buy"><button style="background-color:lightgreen">Buy</button></a>
+                  <a href="/products/<%= x.id %>/buy"><button style="background-color:lightgreen; border-radius: 4px; padding: 3px;">Buy</button></a>
                   <% if(role == "Admin") { %>
-                  <a href="/products/<%= x.id %>/deleteFood"><button style="background-color:red">Delete</button></a>
+                  <a href="/products/<%= x.id %>/deleteFood"><button style="background-color:red; border-radius: 4px; padding: 3px;">Delete</button></a>
                   <% } %>
                 </div>
               </div>
               <% }); %>
     </body>
 
-</html>
+</html> 

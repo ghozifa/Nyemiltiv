@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/navbar.css" rel="stylesheet" type="text/css">
+    <link href="/css/form.css" rel="stylesheet" type="text/css">
     <title>Nyemiltiv - Profile</title>
 </head>
 <%- include("../partials/navbar") %>
@@ -13,39 +14,41 @@
     <body>
         <div style="text-align:center">
             <br>
-            <h2>Create Profile</h2>
+            <h1>Create Profile</h1>
+            <hr>
             <% if(errors) { %>
                 <p style="color:red">
                     <%= errors %>
+                    <hr>
                 </p>
                 <% } %>
                     <form action="/profiles/add" method="post">
                         <p>
-                            <label for="firstName">First Name</label>
+                            <label for="firstName" id="label">First Name</label>
                             <br>
                             <input style="width: 300px;" id="firstName" type="text" name="firstName"
                                 placeholder="Input first name here...">
                         </p>
                         <p>
-                            <label for="lastName">Last Name</label>
+                            <label for="lastName" id="label">Last Name</label>
                             <br>
                             <input style="width: 300px;" id="lastName" type="text" name="lastName"
                                 placeholder="Input last name here...">
                         </p>
                         <p>
-                            <label for="address">Address</label>
+                            <label for="address" id="label">Address</label>
                             <br>
                             <input style="width: 300px;" id="address" type="text" name="address"
                                 placeholder="Input adress here...">
                         </p>
                         <p>
-                            <label for="phoneNumber">Phone Number</label>
+                            <label for="phoneNumber" id="label">Phone Number</label>
                             <br>
                             <input style="width: 300px;" id="phoneNumber" type="number" name="phoneNumber"
                                 placeholder="Input phone number here...">
                         </p>
                         <p>
-                            <label for="gender">Gender</label>
+                            <label for="gender" id="label">Gender</label>
                             <br>
                             <select style="width: 300px;" id="gender" name="gender">
                                 <option value="Male">Male</option>

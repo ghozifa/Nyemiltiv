@@ -9,21 +9,25 @@
 </head>
 <%- include("../partials/nav-login")%>
 <body>
-    <h1>Login</h1>
+    <h1 style="text-align:center">Login</h1>
+    <hr>
     <% if(error) { %>
-        <p style="color: red"><%= error %></p>
+        <p style="color: red; text-align:center"><%= error %></p>
+        <hr>
     <% } %>
     <form action="/login" method="post">
-        <div>
-            <label for="username">Email</label>
-            <input type="text" name="email" placeholder="ex: abc@mail.com">
+        <div style="text-align:center">
+            <label for="username" style="font-weight: bold;">Email</label>
+            <br>
+            <input type="text" name="email" placeholder="ex: abc@mail.com" style="width: 15%; padding: 12px 20px; margin: 8px 0; box-sizing: border-box">
         </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" placeholder="ex: aBC312">
+        <div style="text-align:center">
+            <label for="password" style="font-weight: bold;">Password</label>
+            <br>
+            <input type="password" name="password" placeholder="ex: aBC312" style="width: 15%; padding: 12px 20px; margin: 8px 0; box-sizing: border-box">
         </div>
-        <div>
-            <a href="/login"><button type="submit">Submit</button></a>
+        <div style="text-align:center">
+            <a href="/login"><button type="submit" style="border-radius: 4px; background-color: rgb(87, 105, 244); color: white; padding: 5px;">Submit</button></a>
         </div>
     </form>
 </body>

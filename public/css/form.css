@@ -1,0 +1,27 @@
+input[type=text] {
+    width: 15%; 
+    padding: 12px 20px; 
+    margin: 8px 0; 
+    box-sizing: border-box
+}
+
+input[type=number] {
+    width: 15%; 
+    padding: 12px 20px; 
+    margin: 8px 0; 
+    box-sizing: border-box
+}
+
+input[type=date] {
+    width: 15%; 
+    padding: 12px 20px; 
+    margin: 8px 0; 
+    box-sizing: border-box
+}
+
+button {
+    border-radius: 4px; 
+    background-color: rgb(87, 105, 244); 
+    color: white;
+    padding: 5px;
+}

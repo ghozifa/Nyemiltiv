@@ -6,45 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/navbar.css" rel="stylesheet" type="text/css">
+    <link href="/css/form.css" rel="stylesheet" type="text/css">
     <title>Nyemiltiv - Add food</title>
 </head>
 <%- include("../partials/navbar") %>
 <body>
         <div style="text-align:center">
             <br>
-            <h2>Add Food</h2>
+            <h1>Add Food</h1>
+            <hr>
                     <form action="/food/add" method="post">
                         <p>
-                            <label for="name">Name</label>
+                            <label for="name" id="label">Name</label>
                             <br>
                             <input style="width: 300px;" id="name" type="text" name="name"
                                 placeholder="Input food name here...">
                         </p>
                         <p>
-                            <label for="description">Description</label>
+                            <label for="description" id="label">Description</label>
                             <br>
                             <input style="width: 300px;" id="description" type="text" name="description"
                                 placeholder="Input description here...">
                         </p>
                         <p>
-                            <label for="price">Price</label>
+                            <label for="price" id="label">Price</label>
                             <br>
                             <input style="width: 300px;" id="price" type="number" name="price"
                                 placeholder="Input price here...">
                         </p>
                         <p>
-                            <label for="stock">Stock</label>
+                            <label for="stock" id="label">Stock</label>
                             <br>
                             <input style="width: 300px;" id="stock" type="number" name="stock"
                                 placeholder="Input stock here...">
                         </p>
                         <p>
-                            <label for="expiredDate">Expired Date</label>
+                            <label for="expiredDate" id="label">Expired Date</label>
                             <br>
                             <input style="width: 300px;" id="expiredDate" type="date" name="expiredDate">
                         </p>
                         <p>
-                            <label for="imgUrl">Image Url</label>
+                            <label for="imgUrl" id="label">Image Url</label>
                             <br>
                             <input style="width: 300px;" id="imgUrl" type="text" name="imgUrl"
                                 placeholder="Input image url here...">

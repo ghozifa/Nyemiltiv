@@ -23,3 +23,9 @@
     padding: 2px 16px;
     margin: auto;
   }
+
+.card .container .sb {
+  border-radius: 4px; 
+  background-color: lightblue; 
+  color: white;
+}

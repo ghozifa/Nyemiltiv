@@ -1,11 +1,12 @@
-<ul>
-    <li style="font-weight: bold; font-style: italic;"><a href="/">Nyemiltiv</a></li>
-    <li><a href="/food">Foods</a></li>
-    <li><a href="/beverage">Beverages</a></li>
+<ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden; background-color: #333; margin-top: -1vh; margin-left: -1vh; margin-right: -1vh; margin-bottom: 1vh; padding: 20px;">
+    <li style="font-weight: bold; font-style: italic; float: left;"><a href="/" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Nyemiltiv</a></li>
+    <li style="float: left;"><a href="/food" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Foods</a></li>
+    <li style="float: left;"><a href="/beverage" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Beverages</a></li>
     <% if(sessionId) { %>
-    <li><a href="/logout">Logout</a></li>
+    <li style="float: left;"><a href="/profiles/<%= sessionId %>" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Profile</a></li>   
+    <li style="float: left;"><a href="/logout" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Logout</a></li>
     <% } else { %>
-    <li><a href="/daftar">Daftar</a></li>
-    <li><a href="/login">Login</a></li>
+    <li style="float: left;"><a href="/daftar" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Daftar</a></li>
+    <li style="float: left;"><a href="/login" style="display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;">Login</a></li>
     <% } %>
 </ul>
