@@ -2,7 +2,7 @@
 const fs = require("fs");
 
 module.exports = {
-  up (queryInterface, Sequelize) {
+  up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -16,11 +16,11 @@ module.exports = {
     dataUser.forEach(el => {
       el.createdAt = new Date();
       el.updatedAt = new Date();
-   });
-   return queryInterface.bulkInsert("Users", dataUser, {});
+    });
+    return queryInterface.bulkInsert("Users", dataUser, {});
   },
 
-  down (queryInterface, Sequelize) {
+  down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
