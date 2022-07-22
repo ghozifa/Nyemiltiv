@@ -2,37 +2,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/food.css" rel="stylesheet" type="text/css">
-    <link href="/css/navbar.css" rel="stylesheet" type="text/css">
-    <title>Nyemiltiv - Foods</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/food.css" rel="stylesheet" type="text/css">
+  <link href="/css/navbar.css" rel="stylesheet" type="text/css">
+  <title>Nyemiltiv - Foods</title>
 </head>
 <%- include("../partials/navbar") %>
-    <body>
-        <div style="text-align:center">
-            <h1>Foods</h1>
-            <% if(role == "Admin") { %>
-            <p><a href="/food/add"><button style="border-radius: 4px; background-color: rgb(87, 105, 244); color: white; padding: 5px;">Add Food</button></a></p>
-            <% } %>
-        </div>    
-        <% result.Products.forEach(x=> { %>
-            <div class="card">
-                <img src="<%= x.imgUrl %>" alt="food-beverage" style="width:300px" height="300px">
-                <div class="container">
-                  <h4><b><%= x.name %></b></h4>
-                  <p>Stock : <%= x.stock %> </p>
-                  <p>Price: <%= idrFormatter(x.price) %></p>
-                  <% if(role == "User") { %>
-                    <a href="/products/<%= x.id %>/buy"><button style="background-color:lightgreen; border-radius: 4px; padding: 3px;">Buy</button></a>
-                  <% } %>
-                  <% if(role == "Admin") { %>
-                  <a href="/products/<%= x.id %>/deleteFood"><button style="background-color:red; border-radius: 4px; padding: 3px;">Delete</button></a>
-                  <% } %>
-                </div>
-              </div>
-              <% }); %>
-    </body>
 
-</html> 
+  <body>
+    <div style="text-align:center">
+      <h1>Foods</h1>
+      <% if(role=="Admin" ) { %>
+        <p><a href="/food/add"><button
+              style="border-radius: 4px; background-color: rgb(87, 105, 244); color: white; padding: 5px;">Add
+              Food</button></a></p>
+        <% } %>
+    </div>
+    <% result.Products.forEach(x=> { %>
+      <div class="card">
+        <img src="<%= x.imgUrl %>" alt="food-beverage" style="width:300px" height="300px">
+        <div class="container">
+          <h4><b>
+              <%= x.name %>
+            </b></h4>
+          <p>Stock : <%= x.stock %>
+          </p>
+          <p>Price: <%= idrFormatter(x.price) %>
+          </p>
+          <% if(role=="User" ) { %>
+            <a href="/products/<%= x.id %>/buyFood"><button
+                style="background-color:lightgreen; border-radius: 4px; padding: 3px;">Buy</button></a>
+            <% } %>
+              <% if(role=="Admin" ) { %>
+                <a href="/products/<%= x.id %>/deleteFood"><button
+                    style="background-color:red; border-radius: 4px; padding: 3px;">Delete</button></a>
+                <% } %>
+        </div>
+      </div>
+      <% }); %>
+  </body>
+
+</html>

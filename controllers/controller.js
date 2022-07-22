@@ -12,16 +12,17 @@ class Controller {
         const role = req.session.role;
         const search = req.query.search;
         let temp;
-        if(search) {
-            temp = {[Op.iLike] : `%${search}%`}
+        if (search) {
+            temp = { [Op.iLike]: `%${search}%` }
         } else {
-            temp = {[Op.iLike] : `%%`}
+            temp = { [Op.iLike]: `%%` }
         }
         Product.findAll({
             where: {
-                stock: {[Op.gt] : 0 },
+                stock: { [Op.gt]: 0 },
                 name: temp
-            }
+            },
+            order: [['name', 'asc']]
         })
             .then(result => {
                 if (!result.length) {
@@ -38,7 +39,7 @@ class Controller {
         const sessionId = req.session.userId;
         const role = req.session.role;
         Product.findAll({
-            where: {stock: 0}
+            where: { stock: 0 }
         })
             .then(result => {
                 res.render('emptyStock', { result, idrFormatter, sessionId, role })
@@ -121,7 +122,10 @@ class Controller {
         const sessionId = req.session.userId;
         const role = req.session.role;
         Category.findByPk(1, {
-            include: Product
+            include: {
+                model: Product,
+                order: [['name', 'asc']]
+            }
         })
             .then(result => {
                 res.render('food', { result, idrFormatter, sessionId, role })
@@ -163,7 +167,10 @@ class Controller {
         const sessionId = req.session.userId;
         const role = req.session.role;
         Category.findByPk(2, {
-            include: Product
+            include: {
+                model: Product,
+                order: [['name', 'asc']]
+            }
         })
             .then(result => {
                 res.render('beverage', { result, idrFormatter, sessionId, role })
@@ -353,6 +360,38 @@ class Controller {
             })
             .then(result => {
                 res.redirect('/')
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static buyProductsFood(req, res) {
+        const idProduct = +req.params.id
+        Product.findByPk(idProduct)
+            .then((product) => {
+                if (!product) throw 'Food not found'
+                if (product.stock == 0) throw 'Food empty'
+                return product.decrement("stock", { by: 1 })
+            })
+            .then(result => {
+                res.redirect('/food')
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static buyProductsBeverage(req, res) {
+        const idProduct = +req.params.id
+        Product.findByPk(idProduct)
+            .then((product) => {
+                if (!product) throw 'Beverage not found'
+                if (product.stock == 0) throw 'Beverage empty'
+                return product.decrement("stock", { by: 1 })
+            })
+            .then(result => {
+                res.redirect('/beverage')
             })
             .catch(err => {
                 res.send(err)

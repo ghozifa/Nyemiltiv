@@ -26,11 +26,13 @@ router.use(function (req, res, next) {
 router.get("/food", Controller.food); // Product with categories food
 router.get("/food/add", Controller.addFood); // Product with categories food
 router.post("/food/add", Controller.addFoodPost); // form add product with categories food
+router.get("/products/:id/buyFood", Controller.buyProductsFood); // Buy product food by id
 
 // BEVERAGES
 router.get("/beverage", Controller.beverage); // add product with categories beverage
 router.get("/beverage/add", Controller.addBeverage); //form add product with categories beverage
 router.post("/beverage/add", Controller.addBeveragePost); // add product with categories beverage
+router.get("/products/:id/buyBeverage", Controller.buyProductsBeverage); // Buy product beverage by id
 
 // PRODUCT
 router.get("/products/:id", Controller.productsDetailById); // Product with detail include category
